@@ -36,8 +36,8 @@ export default function Hero() {
             </a>
 
             <h1
-              className="text-6xl md:text-8xl text-white leading-tight mb-8"
-              style={{ fontFamily: "var(--font-yanone), sans-serif", textTransform: "uppercase" }}
+              className="text-6xl md:text-8xl leading-tight mb-8"
+              style={{ fontFamily: "var(--font-yanone), sans-serif", textTransform: "uppercase", color: "#fff" }}
             >
               our expertise.
               <br />

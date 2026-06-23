@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import Link from "next/link";
 
 const navLinks = [
@@ -14,9 +14,25 @@ const navLinks = [
 
 export default function Navbar() {
   const [menuOpen, setMenuOpen] = useState(false);
+  const [scrolled, setScrolled] = useState(false);
+
+  useEffect(() => {
+    const handleScroll = () => setScrolled(window.scrollY > 60);
+    handleScroll();
+    window.addEventListener("scroll", handleScroll, { passive: true });
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
+
+  const headerStyle = scrolled
+    ? { backgroundColor: "#1a1a2e", transition: "background-color 0.3s ease" }
+    : { backgroundColor: "transparent", transition: "background-color 0.3s ease" };
+
+  const linkClass = scrolled
+    ? "text-white text-sm font-medium hover:text-[#c9a7f0] transition-colors whitespace-nowrap"
+    : "text-white text-sm font-medium hover:text-[#f6f6f6] transition-colors whitespace-nowrap";
 
   return (
-    <header className="fixed top-0 left-0 right-0 z-50 bg-transparent">
+    <header className="fixed top-0 left-0 right-0 z-50" style={headerStyle}>
       <div className="max-w-[1240px] mx-auto px-8 flex items-center justify-end h-[70px]">
         {/* Desktop nav */}
         <nav className="hidden md:flex items-center gap-6" aria-label="Primary navigation">
@@ -24,7 +40,7 @@ export default function Navbar() {
             <Link
               key={link.href}
               href={link.href}
-              className="text-white text-sm font-medium hover:text-[#f6f6f6] transition-colors whitespace-nowrap"
+              className={linkClass}
             >
               {link.label}
             </Link>
