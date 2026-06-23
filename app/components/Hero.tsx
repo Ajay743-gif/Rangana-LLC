@@ -2,19 +2,22 @@ import ContactForm from "./ContactForm";
 
 export default function Hero() {
   return (
-    <section
-      className="relative flex items-center"
-      style={{
-        minHeight: "80vh",
-        backgroundImage:
-          "url(https://deeppink-lark-756633.hostingersite.com/wp-content/uploads/2026/02/odoo-consulting-services-in-mumbai-oodu-implementers.jpg)",
-        backgroundSize: "cover",
-        backgroundPosition: "center",
-        backgroundAttachment: "fixed",
-      }}
-    >
+    <section className="relative flex items-center overflow-hidden" style={{ minHeight: "80vh" }}>
+      {/* Blurred background image — isolated so blur doesn't affect content */}
+      <div
+        className="absolute inset-0 scale-110"
+        style={{
+          backgroundImage:
+            "url(https://deeppink-lark-756633.hostingersite.com/wp-content/uploads/2026/02/odoo-consulting-services-in-mumbai-oodu-implementers.jpg)",
+          backgroundSize: "cover",
+          backgroundPosition: "center",
+          backgroundAttachment: "fixed",
+          filter: "blur(6px)",
+        }}
+        aria-hidden="true"
+      />
       {/* Dark overlay */}
-      <div className="absolute inset-0" style={{ backgroundColor: "rgba(0,0,0,0.75)" }} />
+      <div className="absolute inset-0" style={{ backgroundColor: "rgba(0,0,0,0.65)" }} />
 
       <div className="relative z-10 w-full max-w-[1240px] mx-auto px-8 pt-[150px] pb-[50px]">
         <div className="flex flex-col lg:flex-row gap-10 items-stretch">
