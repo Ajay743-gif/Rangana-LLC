@@ -2,15 +2,38 @@ import Image from "next/image";
 
 export default function AboutUs() {
   return (
-    <section className="py-20 px-8 bg-white">
-      <div className="max-w-[1240px] mx-auto grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
-        <div>
-          <p className="text-sm font-semibold text-[#673da6] uppercase tracking-widest mb-2">
+    <section
+      className="relative"
+      style={{
+        backgroundImage:
+          "url(https://deeppink-lark-756633.hostingersite.com/wp-content/uploads/2026/02/aboutUspic.jpg)",
+        backgroundSize: "cover",
+        backgroundPosition: "center",
+        backgroundAttachment: "fixed",
+        padding: "150px 40px",
+      }}
+    >
+      {/* Purple overlay */}
+      <div
+        className="absolute inset-0"
+        style={{ backgroundColor: "#46237a", opacity: 0.7 }}
+        aria-hidden="true"
+      />
+
+      <div className="relative z-10 max-w-[1240px] mx-auto flex flex-col lg:flex-row gap-12 items-center">
+        {/* Left: text */}
+        <div className="lg:w-1/2 text-white">
+          <p className="text-sm font-semibold text-white/80 uppercase tracking-widest mb-2">
             Who We Are
           </p>
-          <h2 className="text-5xl md:text-6xl text-[#46237a] mb-4">About Us</h2>
-          <hr className="border-[#46237a] border-2 w-24 mb-8" />
-          <p className="text-base text-[#414042] leading-relaxed">
+          <h2
+            className="text-5xl md:text-6xl mb-4"
+            style={{ color: "#fff", fontFamily: "var(--font-yanone), sans-serif", textTransform: "uppercase" }}
+          >
+            About Us
+          </h2>
+          <hr className="border-white/60 border-2 w-24 mb-8" />
+          <p className="text-base text-white/90 leading-relaxed">
             Led by <strong>R. Renganathan</strong>, a seasoned financial professional with over{" "}
             <strong>two decades of business and financial advisory experience</strong>, our firm
             specializes in delivering strategic, results-oriented financial solutions to{" "}
@@ -23,7 +46,9 @@ export default function AboutUs() {
             , we bring deep industry insight and practical execution to every engagement.
           </p>
         </div>
-        <div className="relative aspect-[3/2] w-full overflow-hidden rounded shadow-md">
+
+        {/* Right: foreground image */}
+        <div className="lg:w-1/2 relative aspect-[3/2] w-full overflow-hidden">
           <Image
             src="https://deeppink-lark-756633.hostingersite.com/wp-content/uploads/2026/02/1-2-3.jpg"
             alt="About Rengana"
