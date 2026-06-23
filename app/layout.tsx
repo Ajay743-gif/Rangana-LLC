@@ -1,6 +1,8 @@
 import type { Metadata } from "next";
 import { Work_Sans, Yanone_Kaffeesatz } from "next/font/google";
 import "./globals.css";
+import Navbar from "./components/Navbar";
+import Footer from "./components/Footer";
 
 const workSans = Work_Sans({
   variable: "--font-work-sans",
@@ -34,7 +36,9 @@ export default function RootLayout({
   return (
     <html lang="en" className={`${workSans.variable} ${yanoneKaffeesatz.variable}`}>
       <body className="min-h-screen flex flex-col bg-white text-[#414042]">
+        <Navbar />
         {children}
+        <Footer />
       </body>
     </html>
   );
