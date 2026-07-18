@@ -1,116 +1,151 @@
 import type { Metadata } from "next";
+import Image from "next/image";
 import PageHero from "../components/PageHero";
 
+const PHONE = "+96899880403";
+const PHONE_DISPLAY = "+968 9988 0403";
+
 export const metadata: Metadata = {
-  title: "About Us | Rengana Business & Commercial Services",
+  title: "About Us",
+  description:
+    "Rengana Capital is led by R. Renganathan, a finance and business advisor with over two decades of experience across banks, NBFCs and enterprises in Oman.",
+  alternates: { canonical: "/about-us" },
 };
 
-const stats = [
-  { value: "20+", label: "Years of Experience" },
-  { value: "500+", label: "Satisfied Clients" },
-  { value: "200+", label: "Deals Closed" },
-  { value: "50+", label: "Active Partners" },
+const values = ["Integrity", "Professionalism", "Confidentiality", "Client success", "Transparency"];
+
+const whyUs = [
+  { h: "Industry-focused expertise", p: "Two decades across banks, NBFCs, crowdfunding and enterprise, applied to your situation." },
+  { h: "Implementation-driven", p: "Practical advice built to be acted on — not reports that sit on a shelf." },
+  { h: "Built for the long term", p: "We measure success by the prosperity we help our clients sustain, not one-off transactions." },
+  { h: "Aligned with Vision Oman", p: "Support tailored to Oman's evolving business ecosystem and national priorities." },
 ];
+
+const jsonLd = {
+  "@context": "https://schema.org",
+  "@type": "AboutPage",
+  mainEntity: {
+    "@type": "Person",
+    name: "R. Renganathan",
+    jobTitle: "Founder & Principal Advisor, Rengana Capital",
+    worksFor: { "@type": "FinancialService", name: "Rengana Capital" },
+    description:
+      "Finance and business advisor with over two decades of experience across NBFCs, banks, crowdfunding institutions and UHNWI clients in Oman.",
+  },
+};
+
+const breadcrumbLd = {
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  itemListElement: [
+    { "@type": "ListItem", position: 1, name: "Home", item: "https://renganallc.com/" },
+    { "@type": "ListItem", position: 2, name: "About", item: "https://renganallc.com/about-us" },
+  ],
+};
 
 export default function AboutUsPage() {
   return (
     <main>
-      <PageHero title="About Us" />
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }} />
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbLd) }} />
+      <PageHero title="About" />
 
-      {/* Who We Are */}
-      <section className="py-24 px-8 bg-white">
-        <div className="max-w-[1240px] mx-auto grid grid-cols-1 lg:grid-cols-2 gap-16">
-          <div>
-            <p className="text-sm font-semibold text-[#673da6] uppercase tracking-widest mb-2">
-              Global Presence
-            </p>
-            <h2 className="text-5xl text-[#46237a] mb-6">Who We Are</h2>
-            <hr className="border-[#46237a] border-2 w-24 mb-8" />
-            <p className="text-[#414042] leading-relaxed mb-4">
-              Led by <strong>R. Renganathan</strong>, a seasoned financial professional with over two decades
-              of business and financial advisory experience, our firm specializes in delivering strategic,
-              results-oriented financial solutions to Micro, Small, and Medium Enterprises (MSMEs).
-            </p>
-            <p className="text-[#414042] leading-relaxed">
-              With a strong academic foundation and extensive hands-on exposure across NBFCs, leading
-              conventional banks, crowdfunding institutions, and Ultra High Net Worth Individuals (UHNWI),
-              we bring deep industry insight and practical execution to every engagement.
-            </p>
-          </div>
-          <div>
-            <p className="text-sm font-semibold text-[#673da6] uppercase tracking-widest mb-2">
-              Responsibility
-            </p>
-            <h2 className="text-5xl text-[#46237a] mb-6">Our Mission</h2>
-            <hr className="border-[#46237a] border-2 w-24 mb-8" />
-            <p className="text-[#414042] leading-relaxed mb-4">
-              We are committed to empowering businesses across the Sultanate of Oman and the wider Gulf
-              region with expert guidance, transparent advisory, and hands-on support to unlock growth
-              and achieve lasting prosperity.
-            </p>
-            <p className="text-[#414042] leading-relaxed">
-              Our approach is rooted in trust, precision, and a deep understanding of local and
-              international market dynamics — ensuring every client receives advice tailored to their
-              unique financial goals.
-            </p>
-          </div>
-        </div>
-      </section>
-
-      {/* Stats */}
-      <section
-        className="relative py-24 px-8"
-        style={{
-          backgroundImage:
-            "url(https://deeppink-lark-756633.hostingersite.com/wp-content/uploads/2026/02/aboutUspic.jpg)",
-          backgroundSize: "cover",
-          backgroundPosition: "center",
-          backgroundAttachment: "fixed",
-        }}
-      >
-        <div className="absolute inset-0" style={{ backgroundColor: "rgba(0,0,0,0.75)" }} aria-hidden="true" />
-        <div className="relative z-10 max-w-[1240px] mx-auto grid grid-cols-2 lg:grid-cols-4 gap-8 text-center">
-          {stats.map((s) => (
-            <div key={s.label}>
-              <p
-                className="text-6xl font-bold mb-2"
-                style={{ color: "#fff", fontFamily: "var(--font-yanone), sans-serif" }}
-              >
-                {s.value}
-              </p>
-              <p className="text-white/80 text-sm uppercase tracking-wide">{s.label}</p>
+      {/* Founder */}
+      <section className="bg-surface py-24">
+        <div className="wrap grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+          <div className="lg:col-span-5">
+            <div className="relative">
+              <div className="relative w-full aspect-[4/5] overflow-hidden bg-navy-deep">
+                <Image
+                  src="/founder-portrait.jpg"
+                  alt="R. Renganathan, Founder of Rengana Capital, at the Rengana Capital office"
+                  fill
+                  sizes="(max-width: 1024px) 100vw, 40vw"
+                  className="object-cover object-top"
+                />
+              </div>
+              <div className="absolute -bottom-4 -right-4 w-24 h-24 border-2 border-gold hidden sm:block" aria-hidden="true" />
             </div>
-          ))}
+          </div>
+
+          <div className="lg:col-span-7">
+            <p className="eyebrow mb-4">Who we are</p>
+            <h2 className="text-4xl md:text-5xl mb-4">Led by R. Renganathan</h2>
+            <div className="rule-gold mb-8" />
+            <p className="text-lg text-ink leading-relaxed mb-5">
+              Rengana Capital is a personal practice built on more than two decades of hands-on
+              business and financial advisory experience.
+            </p>
+            <p className="text-muted leading-relaxed mb-5">
+              Our founder, R. Renganathan, has worked across NBFCs, leading conventional banks,
+              crowdfunding institutions, and with Ultra High Net Worth Individuals (UHNWI) — giving
+              him a rare, 360-degree view of how finance actually gets done in Oman.
+            </p>
+            <p className="text-muted leading-relaxed mb-8">
+              When you work with Rengana, you work directly with a seasoned professional who has sat
+              on both sides of the table — the lender&apos;s and the business owner&apos;s — and knows
+              how to bring them together.
+            </p>
+            <div className="flex flex-wrap gap-2.5">
+              {values.map((v) => (
+                <span key={v} className="text-xs font-medium text-navy border border-line px-3 py-1.5 bg-paper">
+                  {v}
+                </span>
+              ))}
+            </div>
+          </div>
         </div>
       </section>
 
-      {/* Vision */}
-      <section className="py-24 px-8 bg-[#f6f6f6]">
-        <div className="max-w-[1240px] mx-auto grid grid-cols-1 lg:grid-cols-2 gap-16">
-          <div>
-            <p className="text-sm font-semibold text-[#673da6] uppercase tracking-widest mb-2">
-              Looking Forward
-            </p>
-            <h2 className="text-5xl text-[#46237a] mb-6">Our Vision</h2>
-            <hr className="border-[#46237a] border-2 w-24 mb-8" />
-            <p className="text-[#414042] leading-relaxed">
-              To be the most trusted business and commercial services partner in the Sultanate of Oman —
-              a firm that MSMEs and entrepreneurs turn to first when navigating complex financial landscapes,
-              capital markets, and strategic growth decisions.
+      {/* Vision & Mission */}
+      <section className="bg-paper py-20">
+        <div className="wrap grid grid-cols-1 md:grid-cols-2 gap-6">
+          <div className="bg-surface border border-line p-8">
+            <p className="eyebrow mb-3">Our vision</p>
+            <p className="text-lg text-ink leading-relaxed">
+              To become a trusted partner for businesses by providing reliable and efficient
+              commercial and financial support services across Oman.
             </p>
           </div>
-          <div>
-            <p className="text-sm font-semibold text-[#673da6] uppercase tracking-widest mb-2">
-              How We Work
-            </p>
-            <h2 className="text-5xl text-[#46237a] mb-6">Our Values</h2>
-            <hr className="border-[#46237a] border-2 w-24 mb-8" />
-            <p className="text-[#414042] leading-relaxed">
-              Integrity, expertise, and client-first thinking drive every recommendation we make.
-              We believe in long-term partnerships — not transactional engagements — and measure our
-              success by the prosperity we help our clients achieve.
+          <div className="bg-surface border border-line p-8">
+            <p className="eyebrow mb-3">Our mission</p>
+            <p className="text-lg text-ink leading-relaxed">
+              To deliver high-quality advisory that helps businesses grow, secure the funding they
+              need, and operate efficiently.
             </p>
           </div>
+        </div>
+      </section>
+
+      {/* Why us */}
+      <section className="bg-surface py-24">
+        <div className="wrap">
+          <p className="eyebrow mb-4">Why Rengana</p>
+          <h2 className="text-4xl md:text-5xl mb-4 max-w-2xl">What you get working with us</h2>
+          <div className="rule-gold mb-14" />
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-8">
+            {whyUs.map((w) => (
+              <div key={w.h} className="border-l-2 border-gold pl-5">
+                <h3 className="text-xl text-navy mb-2" style={{ fontWeight: 600 }}>{w.h}</h3>
+                <p className="text-muted leading-relaxed">{w.p}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* CTA */}
+      <section className="bg-navy-deep py-16">
+        <div className="wrap flex flex-col sm:flex-row items-center justify-between gap-6">
+          <h2 className="text-3xl md:text-4xl" style={{ color: "#FBFAF7" }}>
+            Let&apos;s talk about your business.
+          </h2>
+          <a
+            href={`tel:${PHONE}`}
+            className="inline-flex items-center justify-center gap-2 bg-gold text-navy-deep px-8 py-4 text-sm font-semibold hover:bg-gold-light transition-colors shrink-0"
+          >
+            Call now · {PHONE_DISPLAY}
+          </a>
         </div>
       </section>
     </main>

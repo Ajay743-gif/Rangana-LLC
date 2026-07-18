@@ -1,98 +1,66 @@
-import Image from "next/image";
-
-const ArrowIcon = () => (
-  <svg
-    xmlns="http://www.w3.org/2000/svg"
-    viewBox="0 0 512 512"
-    className="w-5 h-5 fill-[#673da6] shrink-0"
-    aria-hidden="true"
-  >
-    <path d="M256 0C114.6 0 0 114.6 0 256c0 141.4 114.6 256 256 256s256-114.6 256-256C512 114.6 397.4 0 256 0zM406.6 278.6l-103.1 103.1c-12.5 12.5-32.75 12.5-45.25 0s-12.5-32.75 0-45.25L306.8 288H128C110.3 288 96 273.7 96 256s14.31-32 32-32h178.8l-49.38-49.38c-12.5-12.5-12.5-32.75 0-45.25s32.75-12.5 45.25 0l103.1 103.1C414.6 241.3 416 251.1 416 256C416 260.9 414.6 270.7 406.6 278.6z" />
-  </svg>
-);
-
-const services = [
-  {
-    title: "Management Services",
-    image: "https://deeppink-lark-756633.hostingersite.com/wp-content/uploads/2026/02/advisory-1.png",
-    imageAlt: "Management Services",
-    items: [
-      "Investment Planning",
-      "Business development",
-      "Company restructurement",
-      "Budgeting",
-      "Finance brokerage",
-      "Heavy vehicles / equipment brokerage",
-    ],
-  },
-  {
-    title: "Advisory & Consultancy",
-    image: "https://deeppink-lark-756633.hostingersite.com/wp-content/uploads/2026/02/Top-Benefits-of-Hiring-a-Business-Consulting-Company-for-SMEs-and-MSMEs-in-India-scaled-1.jpg",
-    imageAlt: "Advisory and Consultancy",
-    items: ["Legal Advisory", "Valuation Advisory", "Business Advisory"],
-  },
-  {
-    title: "Brokerage",
-    image: null,
-    imageAlt: "",
-    items: [
-      "Trading Brokerage",
-      "Business Brokerage",
-      "Real Estate Brokerage",
-      "Investment brokerage",
-      "Finance brokerage",
-      "Heavy vehicles / equipment brokerage",
-    ],
-  },
-  {
-    title: "Trading",
-    image: "https://deeppink-lark-756633.hostingersite.com/wp-content/uploads/2026/02/1591882651611.jpg",
-    imageAlt: "Trading",
-    items: [
-      "General Trading",
-      "Import and Trading",
-      "Commodity Trading (Food)",
-      "Investment brokerage",
-      "Finance brokerage",
-      "Heavy vehicles / equipment brokerage",
-    ],
-  },
-];
+import Link from "next/link";
+import { SERVICES } from "../data/services";
 
 export default function Services() {
   return (
-    <section className="bg-[#f6f6f6] py-20 px-8">
-      <div className="max-w-[1240px] mx-auto">
-        <h2 className="text-5xl md:text-6xl text-[#46237a] mb-4">Management Services</h2>
-        <hr className="border-[#46237a] border-2 w-24 mb-12" />
+    <section id="services" className="bg-paper py-24">
+      <div className="wrap">
+        <p className="eyebrow mb-4">What we do</p>
+        <h2 className="text-4xl md:text-5xl mb-4 max-w-2xl">
+          Finance and advisory, under one trusted roof
+        </h2>
+        <div className="rule-gold mb-14" />
 
-        <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 gap-8">
-          {services.map((service) => (
-            <div key={service.title} className="bg-white p-6 shadow-sm">
-              {service.image && (
-                <div className="relative w-full aspect-[4/3] mb-5 overflow-hidden">
-                  <Image
-                    src={service.image}
-                    alt={service.imageAlt}
-                    fill
-                    className="object-cover"
-                    sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 25vw"
-                  />
-                </div>
-              )}
-              <h3 className="text-lg text-[#46237a] mb-4">{service.title}</h3>
-              <ul className="flex flex-col gap-3">
-                {service.items.map((item) => (
-                  <li key={item} className="flex items-start gap-3 text-sm text-[#414042]">
-                    <ArrowIcon />
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+          {SERVICES.map((service) => (
+            <div
+              key={service.slug}
+              className="bg-surface border border-line p-8 flex flex-col"
+              style={service.featured ? { borderTop: "3px solid #C6A15B" } : undefined}
+            >
+              <div className="flex items-center gap-3 mb-3">
+                <h3 className="text-2xl text-navy" style={{ fontWeight: 600 }}>
+                  {service.title}
+                </h3>
+                {service.featured && (
+                  <span className="text-[11px] font-semibold uppercase tracking-wider text-gold-deep bg-gold/10 px-2 py-1">
+                    Our core
+                  </span>
+                )}
+              </div>
+              <p className="text-sm text-muted leading-relaxed mb-6">{service.tagline}</p>
+              <ul className="grid grid-cols-1 sm:grid-cols-2 gap-x-6 gap-y-3 mb-7">
+                {service.offerings.map((item) => (
+                  <li key={item} className="flex items-start gap-2.5 text-sm text-ink">
+                    <CheckIcon />
                     <span>{item}</span>
                   </li>
                 ))}
               </ul>
+              <Link
+                href={`/services/${service.slug}`}
+                className="mt-auto inline-flex items-center gap-2 text-sm font-semibold text-navy hover:text-gold-deep transition-colors group"
+              >
+                Learn more
+                <span className="transition-transform group-hover:translate-x-1" aria-hidden="true">→</span>
+              </Link>
             </div>
           ))}
         </div>
+
+        <p className="text-sm text-muted mt-8 max-w-2xl">
+          Financing is arranged through licensed banks and NBFCs. Approval and terms are subject to
+          the lender&apos;s assessment.
+        </p>
       </div>
     </section>
+  );
+}
+
+function CheckIcon() {
+  return (
+    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" className="mt-0.5 shrink-0" aria-hidden="true">
+      <path d="M20 6L9 17l-5-5" stroke="#C6A15B" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round" />
+    </svg>
   );
 }

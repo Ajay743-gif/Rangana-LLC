@@ -1,106 +1,119 @@
 import type { Metadata } from "next";
 import PageHero from "../components/PageHero";
 
+const PHONE = "+96899880403";
+const PHONE_DISPLAY = "+968 9988 0403";
+
 export const metadata: Metadata = {
-  title: "FAQ | Rengana Business & Commercial Services",
+  title: "FAQ",
+  description:
+    "Answers to common questions about Rengana Capital — how we arrange finance through banks and NBFCs, who we work with, deal sizes, fees and confidentiality in Oman.",
+  alternates: { canonical: "/faq" },
 };
 
 const faqs = [
   {
-    q: "What types of businesses do you work with?",
-    a: "We primarily work with Micro, Small, and Medium Enterprises (MSMEs) across the Sultanate of Oman and the Gulf region. Our services are also available to larger corporations, family offices, and Ultra High Net Worth Individuals (UHNWI) seeking strategic financial advisory.",
+    q: "What does Rengana Capital do?",
+    a: "We help businesses in Oman raise finance and grow. That means arranging equipment, trade, vehicle and project finance through banks and NBFCs, and providing business and financial advisory — from restructuring and project reports to operational improvement.",
   },
   {
-    q: "What is the difference between Advisory and Brokerage services?",
-    a: "Advisory services focus on strategic guidance — investment planning, business development, valuation, and legal advisory. Brokerage services involve facilitation of transactions, including trading brokerage, business brokerage, real estate brokerage, and finance brokerage where we act as an intermediary to secure the best deal for you.",
+    q: "Do you lend money directly?",
+    a: "No. We are advisors and facilitators. We connect you to the right licensed lenders (banks and NBFCs), structure the proposal, and guide it through to approval. Final approval and terms are decided by the lender.",
   },
   {
-    q: "How do I get started with Rengana?",
-    a: "Simply reach out via our contact page or call us directly. We begin with an initial consultation to understand your business goals, current financial position, and specific needs — then we propose a tailored engagement model.",
+    q: "Who do you work with?",
+    a: "Startups, MSMEs and SMEs, established enterprises, and corporates across Oman. MSMEs and SMEs are our core focus, but we support businesses at every stage of growth.",
   },
   {
-    q: "Do you offer services outside of Oman?",
-    a: "While we are headquartered in Muscat, Sultanate of Oman, our network extends across the GCC and internationally. We have experience working with cross-border transactions, international investment advisory, and global trade brokerage.",
+    q: "What types of finance can you help arrange?",
+    a: "Equipment finance, trade finance, vehicle finance, and project or working-capital finance — arranged through licensed banks and NBFCs and structured to your business and cash flow.",
   },
   {
-    q: "What industries do you specialise in?",
-    a: "We have deep experience across financial services, general trading, import/export, commodity trading (particularly food), real estate, heavy vehicles & equipment, and MSME business advisory. Our exposure spans NBFCs, conventional banks, and crowdfunding institutions.",
+    q: "What deal sizes do you handle?",
+    a: "Facilities typically range from around OMR 250,000 up to larger corporate arrangements, depending on the business, the security, and the lender's assessment.",
   },
   {
-    q: "How long does a typical engagement last?",
-    a: "Engagement duration varies by service. Advisory mandates can range from a single project (4–8 weeks) to ongoing retainer arrangements. Brokerage engagements are typically transaction-based. We tailor our commitment to match your timeline and objectives.",
+    q: "Which areas of Oman do you cover?",
+    a: "We are based in Al Khuwair, Muscat, and work with clients across the Sultanate of Oman.",
   },
   {
-    q: "Is our business information kept confidential?",
-    a: "Absolutely. Confidentiality is a cornerstone of our practice. All client information, financial data, and strategic plans are handled with strict discretion. We are happy to execute NDAs at the outset of any engagement.",
+    q: "How do your fees work?",
+    a: "Our fee structure depends on the nature and complexity of the engagement. We are fully transparent about fees during the initial consultation, so there are no surprises.",
   },
   {
-    q: "What are your fees?",
-    a: "Our fee structure depends on the nature and complexity of the engagement — advisory retainers, success fees, or a combination. We provide full transparency on fees during our initial consultation so there are no surprises.",
+    q: "Is my business information kept confidential?",
+    a: "Yes. Confidentiality is central to how we work. All client information and financial data is handled with strict discretion, and we are happy to sign an NDA at the outset of any engagement.",
   },
   {
-    q: "Can you help with company restructuring?",
-    a: "Yes. Company restructuring is one of our core management services. Whether you are dealing with financial distress, ownership changes, expansion, or a strategic pivot, our team brings hands-on restructuring expertise to help you navigate the transition smoothly.",
-  },
-  {
-    q: "How can I contact you for urgent matters?",
-    a: "You can reach us directly by phone at +968 9988 0403 or +968 9243 7464. For non-urgent enquiries, use the contact form on our website and we will respond within one business day.",
+    q: "How do I get started?",
+    a: "The quickest way is to call us for a short, no-obligation conversation about your needs. We'll tell you honestly whether and how we can help.",
   },
 ];
+
+const jsonLd = {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  mainEntity: faqs.map((f) => ({
+    "@type": "Question",
+    name: f.q,
+    acceptedAnswer: { "@type": "Answer", text: f.a },
+  })),
+};
+
+const breadcrumbLd = {
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  itemListElement: [
+    { "@type": "ListItem", position: 1, name: "Home", item: "https://renganallc.com/" },
+    { "@type": "ListItem", position: 2, name: "FAQ", item: "https://renganallc.com/faq" },
+  ],
+};
 
 export default function FAQPage() {
   return (
     <main>
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }} />
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbLd) }} />
       <PageHero title="FAQ" />
 
-      <section className="py-24 px-8 bg-white">
-        <div className="max-w-[1240px] mx-auto">
-          <div className="text-center mb-16">
-            <p className="text-sm font-semibold text-[#673da6] uppercase tracking-widest mb-2">
-              Got Questions?
-            </p>
-            <h2 className="text-5xl text-[#46237a] mb-4">Frequently Asked Questions</h2>
-            <hr className="border-[#46237a] border-2 w-24 mx-auto" />
-          </div>
+      <section className="bg-paper py-24">
+        <div className="wrap">
+          <p className="eyebrow mb-4">Questions, answered</p>
+          <h2 className="text-4xl md:text-5xl mb-4 max-w-2xl">Frequently asked questions</h2>
+          <div className="rule-gold mb-14" />
 
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-x-16 gap-y-10">
-            {faqs.map((faq) => (
-              <div key={faq.q} className="border-l-4 border-[#46237a] pl-6">
-                <h3 className="text-lg text-[#46237a] mb-3">{faq.q}</h3>
-                <p className="text-[#414042] leading-relaxed text-sm">{faq.a}</p>
-              </div>
+          <div className="max-w-3xl divide-y divide-line border-t border-b border-line">
+            {faqs.map((f) => (
+              <details key={f.q} className="faq-item">
+                <summary className="flex items-center justify-between gap-4 cursor-pointer py-5">
+                  <span className="text-lg text-navy" style={{ fontFamily: "var(--font-cormorant), serif", fontWeight: 600 }}>
+                    {f.q}
+                  </span>
+                  <span className="faq-plus text-gold text-2xl leading-none shrink-0" aria-hidden="true">
+                    +
+                  </span>
+                </summary>
+                <p className="text-muted leading-relaxed pb-6 -mt-1">{f.a}</p>
+              </details>
             ))}
           </div>
         </div>
       </section>
 
-      {/* CTA banner */}
-      <section
-        className="relative py-24 px-8 text-center"
-        style={{
-          backgroundImage:
-            "url(https://deeppink-lark-756633.hostingersite.com/wp-content/uploads/2026/02/odoo-consulting-services-in-mumbai-oodu-implementers.jpg)",
-          backgroundSize: "cover",
-          backgroundPosition: "center",
-          backgroundAttachment: "fixed",
-        }}
-      >
-        <div className="absolute inset-0" style={{ backgroundColor: "rgba(70,35,122,0.85)" }} aria-hidden="true" />
-        <div className="relative z-10">
-          <h2
-            className="text-4xl md:text-5xl mb-6"
-            style={{ color: "#fff", fontFamily: "var(--font-yanone), sans-serif", textTransform: "uppercase" }}
-          >
-            Still Have Questions?
-          </h2>
-          <p className="text-white/80 mb-8 max-w-xl mx-auto">
-            Our team is ready to help. Reach out and we&apos;ll get back to you promptly.
-          </p>
+      {/* CTA */}
+      <section className="bg-navy-deep py-16">
+        <div className="wrap flex flex-col sm:flex-row items-center justify-between gap-6">
+          <div>
+            <h2 className="text-3xl md:text-4xl mb-2" style={{ color: "#FBFAF7" }}>
+              Still have questions?
+            </h2>
+            <p className="text-paper/75">A quick call is the fastest way to get a straight answer.</p>
+          </div>
           <a
-            href="/contact"
-            className="inline-block px-10 py-4 bg-white text-[#46237a] font-semibold text-sm hover:bg-[#f6f6f6] transition-colors"
+            href={`tel:${PHONE}`}
+            className="inline-flex items-center justify-center gap-2 bg-gold text-navy-deep px-8 py-4 text-sm font-semibold hover:bg-gold-light transition-colors shrink-0"
           >
-            Contact Us
+            Call now · {PHONE_DISPLAY}
           </a>
         </div>
       </section>
