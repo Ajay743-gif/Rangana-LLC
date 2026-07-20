@@ -55,7 +55,7 @@ export default function AboutUsPage() {
         <div className="wrap grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
           <div className="lg:col-span-5">
             <div className="relative">
-              <div className="relative w-full aspect-[4/5] overflow-hidden bg-navy-deep">
+              <div className="relative w-full aspect-[2/3] overflow-hidden bg-navy-deep">
                 <Image
                   src="/founder-portrait.jpg"
                   alt="R. Renganathan, Founder of Rengana Capital, at the Rengana Capital office"
